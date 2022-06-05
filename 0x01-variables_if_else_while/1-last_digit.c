@@ -6,7 +6,7 @@
  * main - entry point
  * print the last digit of the number stored in the variable n
  *Return: 0
-*/ 
+*/
 int main(void)
 {
 		int n;
@@ -22,11 +22,10 @@ int main(void)
 					{
 						printf("0");
 					}
-					else if (n < 6 && n != 0)
+					else if (n < 6)
 					{
 						printf("less than 6 not 0");
 					}
-						printf("\n");
 
 					return (0);
 }
