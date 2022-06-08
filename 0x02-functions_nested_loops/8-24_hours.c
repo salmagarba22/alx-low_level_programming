@@ -35,6 +35,7 @@ void jack_bauer(void)
 					num = y % 10;
 					_putchar(num + '0');
 				}
+
 				_putchar('\n');
 			}
 		}
