@@ -1,4 +1,4 @@
-nclude "main.h"
+#include "main.h"
 /**
  * printFunc - To print
  * @num: number to print
