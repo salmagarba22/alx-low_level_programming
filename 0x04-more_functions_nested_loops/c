@@ -1,25 +1,28 @@
-#include "main.h"
+#include <stdio.h>
 
 /**
- * print_square - Function prototype
- * Description: Prints a square of the specified size
- * @size: the size of the square
- * Return: void
+ * main - Program entry point
+ * Description: Prints the numbers from 1 to 100, replacing multiples of 3
+ * with Fizz, multiples of 5 with Buzz, and multiples of both 3 and
+ * 5 with FizzBuzz.
+ * Return: 0
  */
-void print_square(int size)
+int main(void)
 {
-	int r, c;
+	int i = 1;
 
-	if (size <= 0)
-		_putchar('\n');
-	else
+	for (; i < 100; i++)
 	{
-		for (r = 0; r < size; r++)
-		{
-			for (c = 0; c < size; c++)
-				_putchar('#');
-
-			_putchar('\n');
-		}
+		if (i % 3 == 0 && i % 5 == 0)
+			printf("FizzBuzz ");
+		else if (i % 3 == 0)
+			printf("Fizz ");
+		else if (i % 5 == 0)
+			printf("Buzz ");
+		else
+			printf("%d ", i);
 	}
+	printf("Buzz\n");
+
+	return (0);
 }
