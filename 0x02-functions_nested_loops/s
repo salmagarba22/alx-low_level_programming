@@ -1,18 +1,49 @@
-#include "main.h"
 #include <stdio.h>
+
 /**
- * main - check the code.
+ * main - Entry point
  *
- * Return: Always 0.
+ * Return: 0
  */
 int main(void)
 {
- print_times_table(3);
-    _putchar('\n');
-    print_times_table(5);
-    _putchar('\n');
-    print_times_table(98);
-    _putchar('\n');
-    print_times_table(12);  
-    return (0);
+	int sum = 0, cnt3 = 0, cnt5 = 0, cap = 0;
+
+
+	while (cap < 1024)
+	{
+		sum = sum + cap;
+		if (cnt3 == 5)
+		{
+			cnt3 = 0;
+			cap = cap + 3;
+		}
+		else
+		{
+			cap = cap + 3;
+		}
+		cnt3++;
+
+	}
+
+	cap = 0;
+
+	while (cap < 1024)
+	{
+		if (cnt5 == 3)
+		{
+			cnt5 = 0;
+			cap = cap + 5;
+		}
+		else
+		{
+			sum = sum + cap;
+			cap = cap + 5;
+		}
+		cnt5++;
+	}
+
+	printf("%d\n", sum);
+
+	return (0);
 }
