@@ -1,25 +1,24 @@
 #include "main.h"
 
 /**
- * print_diagonal - Function prototype
- * Description: Print a diagonal line of n length, if n is greater than 0
- * @n: the number of times the character \ should be printed
+ * print_square - Function prototype
+ * Description: Prints a square of the specified size
+ * @size: the size of the square
  * Return: void
  */
-void print_diagonal(int n)
+void print_square(int size)
 {
-	int i = 0, x;
+	int r, c;
 
-	if (n <= 0)
+	if (size <= 0)
 		_putchar('\n');
 	else
 	{
-		for (; i < n; i++)
+		for (r = 0; r < size; r++)
 		{
-			for (x = 0; x < i; x++)
-				_putchar(' ');
+			for (c = 0; c < size; c++)
+				_putchar('#');
 
-			_putchar(92);
 			_putchar('\n');
 		}
 	}
