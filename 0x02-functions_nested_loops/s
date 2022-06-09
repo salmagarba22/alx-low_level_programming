@@ -6,18 +6,25 @@
  */
 int main(void)
 {
-	long int num1 = 1, num2 = 2, temp, sum = 2;
+	unsigned long num1 = 1, num2 = 2, temp;
+	int i;
 
-	while (num2 < 4000000)
+	printf("%lu, %lu, ", num1, num2);
+
+	for (i = 1; i <= 96; i++)
 	{
+		if (i == 96)
+		{
+			unsigned long temp2;
+
+			temp2 = num1 + num2;
+			printf("%lu\n", temp2);
+			break;
+		}
 		temp = num1 + num2;
 		num1 = num2;
 		num2 = temp;
-		if (num2 % 2 == 0)
-		{
-			sum = sum + num2;
-		}
+		printf("%lu, ", num2);
 	}
-	printf("%ld\n", sum);
 	return (0);
 }
