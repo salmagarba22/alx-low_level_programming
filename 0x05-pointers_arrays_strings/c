@@ -1,6 +1,7 @@
 #include "main.h"
 
 /**
+<<<<<<< HEAD
  * print_rev - Fucntion prototype
  * Description: Prints a string backwords
  * @s: The string to print
@@ -11,6 +12,20 @@ void print_rev(char *s)
 	int i = 0;
 
 	while (s[i] != '\0')
+=======
+ * _puts - Fucntion prototype
+ * Description: Prints a string, one character at a time, to stdout
+ * @str: The string to print
+ * Return: void
+ */
+void _puts(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+>>>>>>> 4573c5b57b2f1c129808f2ddd635e09a363d5839
 		i++;
 
 	while (i--)
