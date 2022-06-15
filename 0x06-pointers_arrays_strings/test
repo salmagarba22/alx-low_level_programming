@@ -1,23 +1,22 @@
 #include "main.h"
 
 /**
- * _strncat - concatenate two strings
+ * _strncpy - Copy a string starting from index 0 of `dest`.
  * @dest: string
  * @src: string
- * @n: number of elements to concatenate in
- * Return: pointer to resulting `dest`
+ * @n: number of chars to copy over
+ * Return: `dest` edited string
  */
 
-char *_strncat(char *dest, char *src, int n)
+char *_strncpy(char *dest, char *src, int n)
 {
-	int i, c;
+	int i;
 
-	for (i = 0; dest[i] != '\0'; i++)
-		;
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[i] = src[i];
 
-	for (c = 0; src[c] != '\0' && n > 0; c++, n--, i++)
-	{
-		dest[i] = src[c];
-	}
+	for (; n > i; i++)
+		dest[i] = '\0';
+
 	return (dest);
 }
