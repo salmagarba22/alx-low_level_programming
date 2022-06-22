@@ -1,4 +1,4 @@
-nclude "main.h"
+#include "main.h"
 /**
  * _sqrt_recur - helper function
  * @n: num
