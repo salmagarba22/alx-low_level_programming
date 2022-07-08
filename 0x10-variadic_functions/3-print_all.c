@@ -1,81 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "variadic_functions.h"
-/**
- * print_c - Prints char
- * @list: arguments
- * Return: void
- */
-void print_c(va_list list)
-{
-	printf("%c", (char)va_arg(list, int));
-}
-/**
- * print_d - Prints digit
- * @list: arguments
- * Return: void
- */
-void print_d(va_list list)
-{
-	printf("%d", va_arg(list, int));
-}
-/**
- * print_f - Prints float
- * @list: arguments
- * Return: void
- */
-void print_f(va_list list)
-{
-	printf("%f", (float)va_arg(list, double));
-}
-/**
- * print_str - Prints str
- * @list: arguments
- * Return: void
- */
-void print_s(va_list list)
-{
-	char *str = va_arg(list, char *);
 
-	if (str)
+
+/**
+ * print_int - This function print integers
+ * @c: Character type
+ */
+void print_int(char c, ...)
+{
+	va_list integer;
+
+	va_start(integer, c);
+	switch (c)
 	{
-		printf("%s", str);
+		case 'i':
+			printf("%d", va_arg(integer, int));
+			break;
+		case 'c':
+			printf("%c", va_arg(integer, int));
+			break;
+	}
+	va_end(integer);
+}
+
+/**
+ * print_float - This function prints floats
+ * @c: Character type
+ */
+void print_float(char c, ...)
+{
+	va_list flot;
+
+	va_start(flot, c);
+	printf("%f", va_arg(flot, double));
+	va_end(flot);
+}
+
+/**
+ * print_string - This function prints string
+ * @c: Character type
+ */
+void print_string(char c, ...)
+{
+	va_list string;
+	char *str = va_arg(string, char *);
+
+	va_start(string, c);
+
+	if (str == NULL)
+	{
+		printf("(nil)");
 		return;
 	}
-	printf("(nil)");
+	printf("%s", str);
+	va_end(string);
 }
 
 /**
- * print_all - Prints anything
- * @format: format to print
- * Return: void
+ * corr_func - This function selects the correct print function
+ * @c: character representing the data type
+ *
+ * Return: Pointer to associated function
+ */
+void (*corr_func(char c))(char c, ...)
+{
+	type data_type[] = {
+		{'c', print_int},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{0, NULL}
+	};
+	int i = 0;
+
+	while (data_type[i].print_func != NULL)
+	{
+		if (c == data_type[i].t)
+			return (data_type[i].print_func);
+		i++;
+	}
+	return (NULL);
+}
+
+/**
+ * print_all - This function prints everything
+ * @format: String format
  */
 void print_all(const char * const format, ...)
 {
-	va_list list;
-	char *separator = "";
-	int i = 0, j;
+	va_list para;
+	int i = 0;
+	void (*print_func)(char c, ...);
 
-	filter filt[] = {
-	    {'c', print_c},
-	    {'i', print_d},
-	    {'f', print_f},
-	    {'s', print_s}
-	};
-	va_start(list, format);
-	while (format && format[i])
+	va_start(para, format);
+	while (format[i] != '\0')
 	{
-		j = 0;
-		while (j < 4)
+		print_func = corr_func(format[i]);
+		switch (format[i])
 		{
-			if (format[i] == filt[j].fmt)
-			{
-				printf("%s", separator);
-				filt[j].f(list);
-				separator = ", ";
-			}
-			j++;
+			case 'c':
+				print_func(format[i], va_arg(para, int));
+				break;
+			case 'i':
+				print_func(format[i], va_arg(para, int));
+				break;
+			case 'f':
+				print_func(format[i], va_arg(para, double));
+				break;
+			case 's':
+				print_func(format[i], va_arg(para, char *));
+				break;
+			default:
+				i++;
+				continue;
 		}
 		i++;
+		switch (format[i])
+		{
+			case '\0':
+				putchar('\n');
+				break;
+			default:
+				printf(", ");
+		}
 	}
-	printf("\n");
-	va_end(list);
+	va_end(para);
 }
